@@ -3,8 +3,13 @@ include("Raw.jl")
 include("Detect.jl")
 include("Denoise.jl")
 include("ChannelPositions.jl")
+<<<<<<< HEAD
 using ..Raw, ..Detect, ..Denoise, DSP, Base, Statistics
 import ..ChannelPositions:positions as eegpos
+=======
+using .Raw, .Detect, .Denoise, DSP, Base, Statistics
+import .ChannelPositions:positions as eegpos
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 
 function init_reref(data::AbstractArray{<:Real}; dims=1)
     data .- median(skipmissing(data); dims=dims)
@@ -27,24 +32,39 @@ end
     reference = mean of EEG with current bad signals interpolated
 """
 function phaseone(eeg::RawEEG, epochs::Int; kwargs...)
+<<<<<<< HEAD
     findbad!(eeg; kwargs...)
     usablemask = vec(eeg.usablechans .& .!eeg.bad["flat"] .& .!eeg.bad["SNR"])
     initref = init_reref(eeg.data_filtered[usablemask])
+=======
+    findbad(eeg; kwargs...)
+    usablemask = vec(eeg.usablechans .& .!eeg.bad["flat"] .& .!eeg.bad["SNR"])
+    initref = init_reref(eeg.data_out[usablemask])
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     eeg_temp = freshstart(initref, eeg)
     i = 0
     prevbad = deepcopy(eeg.bad)
     cumbad = cumulativebad(prevbad, size(eeg.channels, 1))
     id_range = collect(1:size(eeg.channels, 1))
     while i < epochs
+<<<<<<< HEAD
         findbad!(eeg_temp, referencemode=true, filter=false)
+=======
+        findbad(eeg_temp, referencemode=true, filter=false)
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
         nowcumbad = cumulativebad(eeg_temp.bad, size(eeg_temp.channels, 1))
         if (cumbad == nowcumbad)|(i > 1 & sum(nowcumbad)==sumverybad(eeg_temp))
             break
         end
+<<<<<<< HEAD
         fromid = id_range[.!nowcumbad]
         toid = id_range[nowcumbad]
         from = getpos(eeg.channels, fromid)
         to = getpos(eeg.channels, toid)
+=======
+        from = id_range[.!nowcumbad]
+        to = id_range[nowcumbad]
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
         EEG_interp = interpolate(eeg, from, to)
     end
 end
@@ -82,6 +102,7 @@ function sumverybad(eeg::RawEEG)
     sum(eeg.bad["nan"]) + sum(eeg.bad["SNR"]) + sum(eeg.bad["all"])
 end
 
+<<<<<<< HEAD
 function getpos(chans::AbstractArray{String}, ids::AbstractArray{Int64})
     poslist = []
     for c in chans[ids]
@@ -95,11 +116,21 @@ function interpolate(
     from::AbstractArray{<:Real}, 
     to::AbstractArray{<:Real}
     )
+=======
+function getpos()
+end
+
+function interpolate(eeg::RawEEG, from::AbstractArray, to::AbstractArray)
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     gfrom_to = sphere_spline_g(from, to)
     gto_from = sphere_spline_g(to, from)
     avg = mean(eeg.data_filtered, dims=1)
     data_now = eeg.data_filtered .- avg
+<<<<<<< HEAD
     padding = ones(Float64, 1, size(from, 1))
+=======
+    padding = ones(Float64, 1, size(from)[1])
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     C = pinv(vcat(gfrom_to, padding))
     I = gto_from * C[:, 1:size(C, 1)-1]
     I * data_now .+ avg
@@ -124,7 +155,11 @@ function sphere_spline_g(from, to; stiffness=4, lterms=7)
     legandre(EI, factors)
 end
 
+<<<<<<< HEAD
 function legandre(EI::AbstractArray{<:Real}, factors::AbstractArray{<:Real})
+=======
+function legandre(EI::AbstractArray, factors::AbstractArray)
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     factors = vec(factors)
     if size(factors, 1) == 1
         f1 = factors[1]

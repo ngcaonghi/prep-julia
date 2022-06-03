@@ -6,6 +6,7 @@ import ..Raw: RawEEG
 import ..Denoise: denoise!, bandpass
 export findbad!
 
+<<<<<<< HEAD
 """
     findbad!(eeg::RawEEG;
              flatthresh::Real=1e-15,
@@ -41,6 +42,8 @@ nothing.
 
 **NOTE: This function causes side effect by modifying `eeg::RawEEG`.**
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function findbad!(
     eeg::RawEEG;
     flatthresh::Real=1e-15,
@@ -69,11 +72,14 @@ function findbad!(
     end
 end
 
+<<<<<<< HEAD
 """
     badnan!(eeg::RawEEG)
 
 Find channels that contain NaN values.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badnan!(eeg::RawEEG)
     arr = eeg.data
     sumarr = sum(arr, dims=2) 
@@ -82,11 +88,14 @@ function badnan!(eeg::RawEEG)
     eeg.usablechans = vec(.!nanmask)
 end
 
+<<<<<<< HEAD
 """
     badflat!(eeg::RawEEG)
 
 Find flat channels.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badflat!(eeg::RawEEG; flatthresh::Real=1e-15)
     arr = eeg.data
     madflat = medabsdev(arr) .< flatthresh
@@ -95,11 +104,14 @@ function badflat!(eeg::RawEEG; flatthresh::Real=1e-15)
     eeg.bad["flat"] = vec(flatmask)
 end
 
+<<<<<<< HEAD
 """
     baddev!(eeg::RawEEG)
 
 Find bad-by-deviation channels.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function baddev!(eeg::RawEEG; devthresh::Real=5.0)
     IQR_TO_SD = 0.7413
     channel_amp = iqr(eeg.data) .* IQR_TO_SD
@@ -111,11 +123,14 @@ function baddev!(eeg::RawEEG; devthresh::Real=5.0)
     eeg.bad["deviation"] = vec(devmask)
 end
 
+<<<<<<< HEAD
 """
     badhf!(eeg::RawEEG)
 
 Find bad-by-high-frequency-noise channels.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badhf!(eeg::RawEEG; hfthresh::Real=5.0)
     MEDABS_TO_SD = 1.4826 
     usable = eeg.data[eeg.usablechans, :]
@@ -128,11 +143,14 @@ function badhf!(eeg::RawEEG; hfthresh::Real=5.0)
     eeg.bad["high_frequency"] = vec(hfmask)
 end
 
+<<<<<<< HEAD
 """
     badcorr!(eeg::RawEEG)
 
 Find bad-by-high-correlation channels.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badcorr!(eeg::RawEEG; 
     corrsecs::Real=1.0, corrthresh::Real=0.4, frac::Real=0.01
     )
@@ -170,20 +188,26 @@ function badcorr!(eeg::RawEEG;
     eeg.bad["dropout"] = vec(dropmask)
 end
 
+<<<<<<< HEAD
 """
     badSNR!(eeg::RawEEG)
 
 Find bad-by-signal-to-noise-ratio channels.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badSNR!(eeg::RawEEG)
     eeg.bad["SNR"] = eeg.bad["correlation"] .& eeg.bad["high_frequency"]
 end
 
+<<<<<<< HEAD
 """
     badall!(eeg::RawEEG)
 
 Find channels that are bad by all standards.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function badall!(eeg::RawEEG)
     allmask = zeros(Bool, size(eeg.usablechans, 1))
     for bad in eeg.bad
@@ -196,11 +220,14 @@ function badall!(eeg::RawEEG)
     eeg.bad["all"] = allmask
 end
 
+<<<<<<< HEAD
 """
     iqr(arr::AbstractArray{<:Real})
 
 Return the interquartile ranges (n_channels).
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function iqr(arr::AbstractArray{<:Real})
     qt75 = zeros(Float64, size(arr,1))
     qt25 = zeros(Float64, size(arr,1))
@@ -211,11 +238,14 @@ function iqr(arr::AbstractArray{<:Real})
     qt75 .- qt25
 end
 
+<<<<<<< HEAD
 """
     medabsdev(arr::AbstractArray{<:Real}; dims::Int=2)
 
 Return the median absolute deviation of an array.
 """
+=======
+>>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function medabsdev(arr::AbstractArray{<:Real}; dims::Int=2)
     med = median(arr, dims=dims)
     median(abs.(arr .- med), dims=dims)

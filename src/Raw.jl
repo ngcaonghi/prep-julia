@@ -3,7 +3,6 @@ export RawEEG, loadfile, getchannel
 import CSV.read as readcsv
 using Base, DataFrames
 
-<<<<<<< HEAD
 """
     RawEEG
 
@@ -23,13 +22,6 @@ mutable struct RawEEG
     data_filtered::AbstractArray{<:Real}
     channels::AbstractArray{String}
     bad::Dict{AbstractString, AbstractArray}
-=======
-mutable struct RawEEG
-    data::AbstractArray{<:Real}
-    data_filtered::AbstractArray{<:Real}
-    channels::Array{String}
-    bad::Dict
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     usablechans::BitVector
     sampfreq::Int
     name::String
@@ -37,7 +29,6 @@ mutable struct RawEEG
 end
 RawEEG(dir; kwargs...) = loadfile(dir; kwargs...)
 
-<<<<<<< HEAD
 """
     loadfile(dir::String;
     channels::Array{String} = ["F3";"FC5";"AF3";"F7";"T7";"P7";"O1";"O2";"P8";"T8";"F8";"AF4";"FC6";"F4"],
@@ -47,18 +38,12 @@ RawEEG(dir; kwargs...) = loadfile(dir; kwargs...)
 
 Create RawEEG struct from file directory.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function loadfile(
     dir::String;
     channels::Array{String} = [
         "F3";"FC5";"AF3";"F7";"T7";"P7";"O1";"O2";"P8";"T8";"F8";"AF4";"FC6";"F4"
     ],
-<<<<<<< HEAD
     bad::Dict = Dict{AbstractString, AbstractArray}(),
-=======
-    bad::Dict = Dict(),
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
     usablechans::BitVector = vec(channels .!= nothing),
     sampfreq::Int = 256
 )
@@ -85,14 +70,11 @@ function loadfile(
     )
 end
 
-<<<<<<< HEAD
 """
     getchannel(eeg::RawEEG, channel::AbstractString)
 
 Pull out data of a channel by name.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function getchannel(eeg::RawEEG, channel::AbstractString) 
     arr = eeg.data
     idxarr = arr[arr.==channel]

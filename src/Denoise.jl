@@ -5,7 +5,6 @@ import DSP: Highpass, Lowpass, iirnotch, FIRWindow, digitalfilter, filtfilt, kai
 include("Raw.jl")
 using ..Raw: RawEEG
 
-<<<<<<< HEAD
 """
     `highpass(data::AbstractArray{<:Real}, sampfreq::Int, low::Real)`
 
@@ -14,8 +13,6 @@ Apply highpass filtering to data.
 # Return 
 An array having the same size as the input array.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function highpass(data::AbstractArray{<:Real}, sampfreq::Int, low::Real)
     wd = 2.0 * low / sampfreq
     filter = digitalfilter(Highpass(wd), 
@@ -23,7 +20,6 @@ function highpass(data::AbstractArray{<:Real}, sampfreq::Int, low::Real)
     filtfilt(filter, data)
 end
 
-<<<<<<< HEAD
 """
     `lowpass(data::AbstractArray{<:Real}, sampfreq::Int, high::Real)`
 
@@ -32,8 +28,6 @@ Apply lowpass filtering to data.
 # Return 
 An array having the same size as the input array.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function lowpass(data::AbstractArray{<:Real}, sampfreq::Int, high::Real)
     wd = high / sampfreq
     filter = digitalfilter(Lowpass(wd), 
@@ -41,7 +35,6 @@ function lowpass(data::AbstractArray{<:Real}, sampfreq::Int, high::Real)
     filtfilt(filter, data)
 end
 
-<<<<<<< HEAD
 """
     `linenoise_filter(data::AbstractArray{<:Real}, sampfreq::Int, 
                      noisefreq::Real, bandwidth::Real)`
@@ -51,8 +44,6 @@ Apply linenoise filtering to data.
 # Return 
 An array having the same size as the input array.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function linenoise_filter(
     data::AbstractArray{<:Real}, sampfreq::Int, noisefreq::Real, bandwidth::Real
 )
@@ -60,7 +51,6 @@ function linenoise_filter(
     filtfilt(filter, data)
 end
 
-<<<<<<< HEAD
 """
     `bandpass(data::AbstractArray{<:Real}, sampfreq::Int; low::Real=1, high::Real=50)`
 
@@ -75,8 +65,6 @@ Apply bandpass filtering to data.
 # Return 
 An array having the same size as the input array.
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function bandpass(data::AbstractArray{<:Real}, sampfreq::Int; 
     low::Real=1, high::Real=50
 )
@@ -86,7 +74,6 @@ function bandpass(data::AbstractArray{<:Real}, sampfreq::Int;
     transpose(data)
 end
 
-<<<<<<< HEAD
 """
     `denoise!(eeg::RawEEG; low::Real=0.8, linenoise::Real=50.0, 
               notch_bandwidth::Real=5.0)`
@@ -104,8 +91,6 @@ nothing.
 
 **NOTE: This function causes side effect by modifying `eeg::RawEEG`.**
 """
-=======
->>>>>>> 69336fbb60394eaf3ac63a45b27a4a876bbe62d1
 function denoise!(
     eeg::RawEEG;
     low::Real=0.8, linenoise::Real=50.0, notch_bandwidth::Real=5.0

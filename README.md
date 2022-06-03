@@ -6,11 +6,11 @@ A Julia implementation of the PREP EEG preprocessing pipeline designed by Shamlo
 - [x] Choose to preprocess either a single file or a folder of .csv files
 - [x] Denoise data by bandpass and linenoise filter 
 - [x] Detect bad channels by NaN, flatness, deviation, high-frequency noise, and correlation
-- [] Rereference channels by robust referencing (in progress)
-- [] Interpolate bad channels by spherical spline interpolation (in progress)
-- [] Detect bad channels by random sample consensus (start and finish dates TBD)
-- [] Return preprocessed data in .csv format (start and finish dates TBD)
-- [] Plot before-and-after raw data and power density spectra (start and finish dates TBD)
+- [ ] Rereference channels by robust referencing (in progress)
+- [ ] Interpolate bad channels by spherical spline interpolation (in progress)
+- [ ] Detect bad channels by random sample consensus (start and finish dates TBD)
+- [ ] Return preprocessed data in .csv format (start and finish dates TBD)
+- [ ] Plot before-and-after raw data and power density spectra (start and finish dates TBD)
 
 ## Getting started
 - Run `TerminalInterface.jl` by typing `julia` in the terminal and typing the file name. In VSCode, the file can be run by Ctrl+F5.

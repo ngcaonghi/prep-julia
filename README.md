@@ -19,7 +19,7 @@ A Julia implementation of the PREP EEG preprocessing pipeline designed by Shamlo
 - Wait for the result! Right now only bad channel detection is fully implemented. In the future when the whole pipeline has been completed, the resulted data will be saved in the .csv format.
 
 ## Data source
-The data provided in the samples folder are extracted from the BED dataset by Arnau-González *et al.* (2021) [[2]](#2). Find the full dataset [here](https://zenodo.org/record/4309472?token=eyJhbGciOiJIUzUxMiIsImV4cCI6MTY1ODUyNzE5OSwiaWF0IjoxNjMwMzk5NjcyfQ.eyJkYXRhIjp7InJlY2lkIjo0MzA5NDcyfSwiaWQiOjE2ODExLCJybmQiOiIyZmU5Nzk0ZiJ9.mCdQaX9123h0Cm37l2qPq9FFrC_g0D5YRW1R5ztilrRd_TI9ssvpw-hUl17sN4wU8DI6E7C0LqzZ-diYOaZDGg#.YXimL3Uzb1E).
+The data provided in the samples folder  ([Drive link](https://drive.google.com/drive/folders/1OUDsZFmCaGNoWPwbCIk3dsg9OtWtGdlI?usp=sharing)) are extracted from the BED dataset by Arnau-González *et al.* (2021) [[2]](#2). Find the full dataset [here](https://zenodo.org/record/4309472?token=eyJhbGciOiJIUzUxMiIsImV4cCI6MTY1ODUyNzE5OSwiaWF0IjoxNjMwMzk5NjcyfQ.eyJkYXRhIjp7InJlY2lkIjo0MzA5NDcyfSwiaWQiOjE2ODExLCJybmQiOiIyZmU5Nzk0ZiJ9.mCdQaX9123h0Cm37l2qPq9FFrC_g0D5YRW1R5ztilrRd_TI9ssvpw-hUl17sN4wU8DI6E7C0LqzZ-diYOaZDGg#.YXimL3Uzb1E).
 
 ## Reference
 <a id="1">[1]</a>
